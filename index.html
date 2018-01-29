@@ -1,0 +1,774 @@
+
+
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" 
+		content="width=device-width, 
+				initial-scale=1.0, 
+				minimum-scale=0.8, 
+				maximum-scale=2.0, 
+				user-scalable=yes">
+	
+	
+<!-- jquery3.1.1 -->
+	<script src="jquery3.1.1/jquery-3.1.1.min.js"></script>
+
+	
+<!-- fontAwesome4.6.3 -->
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+	
+<!-- bootstrap3.3.7 -->
+	<link rel="stylesheet" href="bootstrap3.3.7/css/bootstrap.min.css">
+	<script src="bootstrap3.3.7/js/bootstrap.min.js"></script>
+
+<!-- bootstrap-select-1.11.2 -->
+<!--
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/js/bootstrap-select.min.js"></script>
+-->
+
+<link rel="stylesheet" href="bootstrap-select-1.11.2\dist\css\bootstrap-select.min.css">
+<script src="bootstrap-select-1.11.2\dist\js\bootstrap-select.min.js"></script>
+<script src="bootstrap-select-1.11.2\dist\js\i18n\defaults-zh_TW.min.js"></script>
+
+
+<style> 
+@font-face {
+    font-family: myFirstFont;
+    src: url(EUDC.TTE);
+    src: url(KAI.TTE);
+}
+
+div {
+    font-family: myFirstFont;
+}
+</style>
+
+<!-- BEGIN # Navbar -->
+<style>
+/* adjust body when menu is open */
+body.slide-active {
+    overflow-x: hidden
+}
+/*first child of #page-content so it doesn't shift around*/
+.no-margin-top {
+    margin-top: 0px!important
+}
+/*wrap the entire page content but not nav inside this div if not a fixed top, don't add any top padding */
+#page-content {
+    position: relative;
+    padding-top: 70px;
+    left: 0;
+}
+#page-content.slide-active {
+    padding-top: 0
+}
+/* put toggle bars on the left :: not using button */
+#slide-nav .navbar-toggle {
+    cursor: pointer;
+    position: relative;
+    line-height: 0;
+    float: left;
+    margin: 0;
+    width: 30px;
+    height: 40px;
+    padding: 10px 0 0 0;
+    border: 0;
+    background: transparent;
+}
+/* icon bar prettyup - optional */
+#slide-nav .navbar-toggle > .icon-bar {
+    width: 100%;
+    display: block;
+    height: 3px;
+    margin: 5px 0 0 0;
+}
+#slide-nav .navbar-toggle.slide-active .icon-bar {
+    background: orange
+}
+.navbar-header {
+    position: relative
+}
+/* un fix the navbar when active so that all the menu items are accessible */
+.navbar.navbar-fixed-top.slide-active {
+    position: relative
+}
+/* screw writing importants and shit, just stick it in max width since these classes are not shared between sizes */
+@media (max-width:767px) { 
+	#slide-nav .container {
+	    margin: 0;
+	    padding: 0!important;
+	}
+	#slide-nav .navbar-header {
+	    margin: 0 auto;
+	    padding: 0 15px;
+	}
+	#slide-nav .navbar.slide-active {
+	    position: absolute;
+	    width: 80%;
+	    top: -1px;
+	    z-index: 1000;
+	}
+	#slide-nav #slidemenu {
+	    background: #f7f7f7;
+	    left: -100%;
+	    width: 80%;
+	    min-width: 0;
+	    position: absolute;
+	    padding-left: 0;
+	    z-index: 2;
+	    top: -8px;
+	    margin: 0;
+	}
+	#slide-nav #slidemenu .navbar-nav {
+	    min-width: 0;
+	    width: 100%;
+	    margin: 0;
+	}
+	#slide-nav #slidemenu .navbar-nav .dropdown-menu li a {
+	    min-width: 0;
+	    width: 80%;
+	    white-space: normal;
+	}
+	#slide-nav {
+	    border-top: 0
+	}
+	#slide-nav.navbar-inverse #slidemenu {
+	    background: #333
+	}
+	/* this is behind the navigation but the navigation is not inside it so that the navigation is accessible and scrolls*/
+	#slide-nav #navbar-height-col {
+	    position: fixed;
+	    top: 0;
+	    height: 100%;
+	    width: 80%;
+	    left: -80%;
+	    background: #eee;
+	}
+	#slide-nav.navbar-inverse #navbar-height-col {
+	    background: #333;
+	    z-index: 1;
+	    border: 0;
+	}
+	#slide-nav .navbar-form {
+	    width: 100%;
+	    margin: 8px 0;
+	    text-align: center;
+	    overflow: hidden;
+	    /*fast clearfixer*/
+	}
+	#slide-nav .navbar-form .form-control {
+	    text-align: center
+	}
+	#slide-nav .navbar-form .btn {
+	    width: 100%
+	}
+}
+@media (min-width:768px) { 
+	#page-content {
+	    left: 0!important
+	}
+	.navbar.navbar-fixed-top.slide-active {
+	    position: fixed
+	}
+	.navbar-header {
+	    left: 0!important
+	}
+}
+
+</style>
+<!-- END # Navbar -->
+
+<!-- BEGIN # MODAL LOGIN -->
+<style>
+/* #####################################################################
+   #
+   #   Project       : Modal Login with jQuery Effects
+   #   Author        : Rodrigo Amarante (rodrigockamarante)
+   #   Version       : 1.0
+   #   Created       : 07/28/2015
+   #   Last Change   : 08/02/2015
+   #
+   ##################################################################### */
+   
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+#login-modal .modal-dialog {
+    width: 350px;
+}
+
+#login-modal input[type=text], input[type=password] {
+	margin-top: 10px;
+}
+
+#div-login-msg,
+#div-lost-msg,
+#div-register-msg {
+    border: 1px solid #dadfe1;
+    height: 30px;
+    line-height: 28px;
+    transition: all ease-in-out 500ms;
+}
+
+#div-login-msg.success,
+#div-lost-msg.success,
+#div-register-msg.success {
+    border: 1px solid #68c3a3;
+    background-color: #c8f7c5;
+}
+
+#div-login-msg.error,
+#div-lost-msg.error,
+#div-register-msg.error {
+    border: 1px solid #eb575b;
+    background-color: #ffcad1;
+}
+
+#icon-login-msg,
+#icon-lost-msg,
+#icon-register-msg {
+    width: 30px;
+    float: left;
+    line-height: 28px;
+    text-align: center;
+    background-color: #dadfe1;
+    margin-right: 5px;
+    transition: all ease-in-out 500ms;
+}
+
+#icon-login-msg.success,
+#icon-lost-msg.success,
+#icon-register-msg.success {
+    background-color: #68c3a3 !important;
+}
+
+#icon-login-msg.error,
+#icon-lost-msg.error,
+#icon-register-msg.error {
+    background-color: #eb575b !important;
+}
+
+#img_logo {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+/* #########################################
+   #    override the bootstrap configs     #
+   ######################################### */
+
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .8;
+}
+
+.modal-content {
+    background-color: #ececec;
+    border: 1px solid #bdc3c7;
+    border-radius: 0px;
+    outline: 0;
+}
+
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px 15px 15px 15px;
+    border-bottom: 0px;
+}
+
+.modal-body {
+    position: relative;
+    padding: 5px 15px 5px 15px;
+}
+
+.modal-footer {
+    padding: 15px 15px 15px 15px;
+    text-align: left;
+    border-top: 0px;
+}
+
+.checkbox {
+    margin-bottom: 0px;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+    outline: none;
+}
+
+.btn-lg, .btn-group-lg>.btn {
+    border-radius: 0px;
+}
+
+.btn-link {
+    padding: 5px 10px 0px 0px;
+    color: #95a5a6;
+}
+
+.btn-link:hover, .btn-link:focus {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.glyphicon {
+    top: 0px;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+</style>
+<!-- END # MODAL LOGIN -->
+
+</head>
+
+
+
+<body>
+
+<!-- BEGIN # Navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="slide-nav">
+  <div class="container">
+   <div class="navbar-header">
+    <a class="navbar-toggle"> 
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+     </a>
+    <a class="navbar-brand" href="#">Project name</a>
+   </div>
+   <div id="slidemenu">
+   <div class="btn-group open">
+  <a class="btn btn-primary" href="#"><i class="fa fa-user fa-fw"></i> User</a>
+  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="fa fa-caret-down" title="Toggle dropdown menu"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+    <li><a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a></li>
+    <li><a href="#"><i class="fa fa-ban fa-fw"></i> Ban</a></li>
+    <li class="divider"></li>
+    <li><a href="#"><i class="fa fa-unlock"></i> Make admin</a></li>
+  </ul>
+</div>
+     <button type="button" class="btn btn-primary btn-lg navbar-form navbar-right" data-toggle="modal" data-target="#login-modal">Open Login Modal</button>
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="search" placeholder="search" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
+     
+    <ul class="nav navbar-nav">
+     <li class="active"><a href="#">Home</a></li>
+     <li><a href="#about">About</a></li>
+     <li><a href="#contact">Contact</a></li>
+     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+       <li><a href="#">Action</a></li>
+       <li><a href="#">Another action</a></li>
+       <li><a href="#">Something else here</a></li>
+       <li class="divider"></li>
+       <li class="dropdown-header">Nav header</li>
+       <li><a href="#">Separated link</a></li>
+       <li><a href="#">One more separated link</a></li>
+       <li><a href="#">Action</a></li>
+       <li><a href="#">Another action</a></li>
+       <li><a href="#">Something else here</a></li>
+       <li class="divider"></li>
+       <li class="dropdown-header">Nav header</li>
+       <li><a href="#">Separated link</a></li>
+       <li><a href="#">One more separated link</a></li>
+       <li><a href="#">Action</a></li>
+       <li><a href="#">Another action</a></li>
+       <li><a href="#">Something else here</a></li>
+       <li class="divider"></li>
+       <li class="dropdown-header">Nav header</li>
+       <li><a href="#">Separated link test long title goes here</a></li>
+       <li><a href="#">One more separated link</a></li>
+      </ul>
+     </li>
+    </ul>
+          
+   </div>
+  </div>
+ </div>
+<!-- END # Navbar -->
+
+
+<div id="page-content">
+<div class="container" id="mybody">
+ 
+ <!-- BEGIN # BOOTSNIP INFO -->
+	<div class="row">
+		<h1 class="text-center">Modal Login with jQuery Effects</h1>
+        <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Open Login Modal</a></p>
+	</div>
+<!-- END # BOOTSNIP INFO -->
+<!-- BEGIN # MODAL LOGIN -->
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" align="center">
+				<img class="img-circle" id="img_logo" src="http://bootsnipp.com/img/logo.jpg">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
+			</div>
+			
+			<!-- Begin # DIV Form -->
+			<div id="div-forms">
+			
+				<!-- Begin # Login Form -->
+				<form id="login-form">
+					<div class="modal-body">
+						<div id="div-login-msg">
+							<div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+							<span id="text-login-msg">Type your username and password.</span>
+						</div>
+						<input id="login_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+						<input id="login_password" class="form-control" type="password" placeholder="Password" required>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> Remember me
+							</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+						</div>
+						<div>
+							<button id="login_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+							<button id="login_register_btn" type="button" class="btn btn-link">Register</button>
+						</div>
+					</div>
+				</form>
+				<!-- End # Login Form -->
+				
+				<!-- Begin | Lost Password Form -->
+				<form id="lost-form" style="display:none;">
+					<div class="modal-body">
+						<div id="div-lost-msg">
+							<div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+							<span id="text-lost-msg">Type your e-mail.</span>
+						</div>
+						<input id="lost_email" class="form-control" type="text" placeholder="E-Mail (type ERROR for error effect)" required>
+					</div>
+					<div class="modal-footer">
+						<div>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+						</div>
+						<div>
+							<button id="lost_login_btn" type="button" class="btn btn-link">Log In</button>
+							<button id="lost_register_btn" type="button" class="btn btn-link">Register</button>
+						</div>
+					</div>
+				</form>
+				<!-- End | Lost Password Form -->
+				
+				<!-- Begin | Register Form -->
+				<form id="register-form" style="display:none;">
+					<div class="modal-body">
+						<div id="div-register-msg">
+							<div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+							<span id="text-register-msg">Register an account.</span>
+						</div>
+						<input id="register_username" class="form-control" type="text" placeholder="Username (type ERROR for error effect)" required>
+						<input id="register_email" class="form-control" type="text" placeholder="E-Mail" required>
+						<input id="register_password" class="form-control" type="password" placeholder="Password" required>
+					</div>
+					<div class="modal-footer">
+						<div>
+							<button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+						</div>
+						<div>
+							<button id="register_login_btn" type="button" class="btn btn-link">Log In</button>
+							<button id="register_lost_btn" type="button" class="btn btn-link">Lost Password?</button>
+						</div>
+					</div>
+				</form>
+				<!-- End | Register Form -->
+				
+			</div>
+			<!-- End # DIV Form -->
+			
+		</div>
+	</div>
+</div>
+<!-- END # MODAL LOGIN -->
+
+
+
+
+
+<div></div>
+ <div class="row">
+   <h2 class="no-margin-top">~ QmO ~</h2>
+   <p>只要一個帳戶，所有 Google 服務暢行無阻。</p>
+   
+<div class="form-group">
+<div class="col-sm-2">
+	<div class="input-group margin-bottom-sm">
+		<span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+		<input class="form-control" type="text" placeholder="ID number">
+	</div>
+</div>
+</div>
+<div class="form-group"> 
+<div class="col-sm-2">
+	<div class="input-group">
+	  <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+	  <input class="form-control" type="password" placeholder="Password">
+	</div>
+</div>
+</div>
+ 
+  </div>
+ <div class="row">
+   <h2>Left side Navigation bar (Fixed)</h2>
+   
+   <p>Left side Navigation</p>
+   
+    <button onclick="myFunction()">Try it</button>
+ </div>
+ <div class="row">
+   <h2>Left side Navigation bar (Fixed)</h2>
+   
+   <p>Left side Navigation</p>
+   
+   <select class="selectpicker">
+	  <option>Mustard</option>
+	  <option>Ketchup</option>
+	  <option>Relish</option>
+   </select>
+ </div> 
+ <div class="row">
+   <h2>Left side Navigation bar (Fixed)</h2>
+   
+   <p>Left side Navigation</p>
+   
+   
+<a class="btn btn-default" href="path/to/settings" aria-label="Settings">
+  <i class="fa fa-cog" aria-hidden="true"></i>
+</a>
+
+<a class="btn btn-danger" href="path/to/settings" aria-label="Delete">
+  <i class="fa fa-trash-o" aria-hidden="true"></i>
+</a>
+
+<a class="btn btn-primary" href="#navigation-main" aria-label="Skip to main navigation">
+  <i class="fa fa-bars" aria-hidden="true"></i>
+</a>
+<a href="path/to/shopping/cart" class="btn btn-primary" aria-label="View 3 items in your shopping cart">
+  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+</a>
+<i class="fa fa-battery-half" aria-hidden="true"></i><span class="sr-only">Battery level: 50%</span>
+<i class="fa fa-camera-retro"></i> fa-camera-retro
+<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span>
+<i class="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"></i><span class="sr-only">Refreshing...</span>
+<i class="fa fa-cog fa-spin fa-3x fa-fw" aria-hidden="true"></i><span class="sr-only">Saving. Hang tight!</span>
+
+
+ </div>
+
+ 
+</div>
+<!-- /.container -->
+ 
+</div>
+<!-- /#page-content -->
+
+</body>
+</html>
+
+<!-- BEGIN # Navbar -->
+<script>
+$(document).ready(function () {
+
+    //stick in the fixed 100% height behind the navbar but don't wrap it
+    $('#slide-nav.navbar .container').append($('<div id="navbar-height-col"></div>'));
+
+    // Enter your ids or classes
+    var toggler = '.navbar-toggle';
+    var pagewrapper = '#page-content';
+    var navigationwrapper = '.navbar-header';
+    var menuwidth = '100%'; // the menu inside the slide menu itself
+    var slidewidth = '80%';
+    var menuneg = '-100%';
+    var slideneg = '-80%';
+
+
+    $("#slide-nav").on("click", toggler, function (e) {
+
+        var selected = $(this).hasClass('slide-active');
+
+        $('#slidemenu').stop().animate({
+            left: selected ? menuneg : '0px'
+        });
+
+        $('#navbar-height-col').stop().animate({
+            left: selected ? slideneg : '0px'
+        });
+
+        $(pagewrapper).stop().animate({
+            left: selected ? '0px' : slidewidth
+        });
+
+        $(navigationwrapper).stop().animate({
+            left: selected ? '0px' : slidewidth
+        });
+
+
+        $(this).toggleClass('slide-active', !selected);
+        $('#slidemenu').toggleClass('slide-active');
+
+
+        $('#page-content, .navbar, body, .navbar-header').toggleClass('slide-active');
+
+
+    });
+
+
+    var selected = '#slidemenu, #page-content, body, .navbar, .navbar-header';
+
+    $(window).on("resize", function () {
+
+        if ($(window).width() > 767 && $('.navbar-toggle').is(':hidden')) {
+            $(selected).removeClass('slide-active');
+        }
+
+    });
+});
+</script>
+<!-- END # Navbar -->
+
+<!-- BEGIN # MODAL LOGIN -->
+<script>
+/* #####################################################################
+   #
+   #   Project       : Modal Login with jQuery Effects
+   #   Author        : Rodrigo Amarante (rodrigockamarante)
+   #   Version       : 1.0
+   #   Created       : 07/29/2015
+   #   Last Change   : 08/04/2015
+   #
+   ##################################################################### */
+   
+$(function() {
+    
+    var $formLogin = $('#login-form');
+    var $formLost = $('#lost-form');
+    var $formRegister = $('#register-form');
+    var $divForms = $('#div-forms');
+    var $modalAnimateTime = 300;
+    var $msgAnimateTime = 150;
+    var $msgShowTime = 2000;
+
+    $("form").submit(function () {
+        switch(this.id) {
+            case "login-form":
+                var $lg_username=$('#login_username').val();
+                var $lg_password=$('#login_password').val();
+                if ($lg_username == "ERROR") {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "error", "glyphicon-remove", "Login error");
+                } else {
+                    msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
+                }
+                return false;
+                break;
+            case "lost-form":
+                var $ls_email=$('#lost_email').val();
+                if ($ls_email == "ERROR") {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "error", "glyphicon-remove", "Send error");
+                } else {
+                    msgChange($('#div-lost-msg'), $('#icon-lost-msg'), $('#text-lost-msg'), "success", "glyphicon-ok", "Send OK");
+                }
+                return false;
+                break;
+            case "register-form":
+                var $rg_username=$('#register_username').val();
+                var $rg_email=$('#register_email').val();
+                var $rg_password=$('#register_password').val();
+                if ($rg_username == "ERROR") {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "error", "glyphicon-remove", "Register error");
+                } else {
+                    msgChange($('#div-register-msg'), $('#icon-register-msg'), $('#text-register-msg'), "success", "glyphicon-ok", "Register OK");
+                }
+                return false;
+                break;
+            default:
+                return false;
+        }
+        return false;
+    });
+    
+    $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
+    $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+    $('#login_lost_btn').click( function () { modalAnimate($formLogin, $formLost); });
+    $('#lost_login_btn').click( function () { modalAnimate($formLost, $formLogin); });
+    $('#lost_register_btn').click( function () { modalAnimate($formLost, $formRegister); });
+    $('#register_lost_btn').click( function () { modalAnimate($formRegister, $formLost); });
+    
+    function modalAnimate ($oldForm, $newForm) {
+        var $oldH = $oldForm.height();
+        var $newH = $newForm.height();
+        $divForms.css("height",$oldH);
+        $oldForm.fadeToggle($modalAnimateTime, function(){
+            $divForms.animate({height: $newH}, $modalAnimateTime, function(){
+                $newForm.fadeToggle($modalAnimateTime);
+            });
+        });
+    }
+    
+    function msgFade ($msgId, $msgText) {
+        $msgId.fadeOut($msgAnimateTime, function() {
+            $(this).text($msgText).fadeIn($msgAnimateTime);
+        });
+    }
+    
+    function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass, $msgText) {
+        var $msgOld = $divTag.text();
+        msgFade($textTag, $msgText);
+        $divTag.addClass($divClass);
+        $iconTag.removeClass("glyphicon-chevron-right");
+        $iconTag.addClass($iconClass + " " + $divClass);
+        setTimeout(function() {
+            msgFade($textTag, $msgOld);
+            $divTag.removeClass($divClass);
+            $iconTag.addClass("glyphicon-chevron-right");
+            $iconTag.removeClass($iconClass + " " + $divClass);
+  		}, $msgShowTime);
+    }
+});
+</script>
+<!-- END # MODAL LOGIN -->
+<script>
+
+$('.selectpicker').selectpicker({
+  style: 'btn-info',
+  size: 4
+});
+
+
+function myFunction() {
+    alert("Hello! I am an alert box!");
+}
+</script>
