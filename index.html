@@ -603,7 +603,8 @@ body.slide-active {
 <script>
 $(document).ready(function () {
 	// Detecting iOS/Android
-	getMobileOperatingSystem();
+	var os_version = getMobileOperatingSystem();
+	alert(os_version);
 	
     //stick in the fixed 100% height behind the navbar but don't wrap it
     $('#slide-nav.navbar .container').append($('<div id="navbar-height-col"></div>'));
