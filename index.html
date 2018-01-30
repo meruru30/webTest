@@ -784,11 +784,13 @@ function getMobileOperatingSystem() {
     }
 
     if (/android/i.test(userAgent)) {
+		window.location.href = "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2";
         return "Android";
     }
 
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
     if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+		window.location.href = "https://itunes.apple.com/tw/app/google-authenticator/id388497605?mt=8";
         return "iOS";
     }
 
